@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(135deg, #eef2f7, #dfe6ec);
+    color: #2c3e50;
+  }
+  
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  header h1 {
+    font-size: 2.5rem;
+  }
+  
+  header p {
+    margin-top: 10px;
+    opacity: 0.85;
+  }
+  
+  /* MAIN */
+  main {
+    max-width: 1000px;
+    margin: -30px auto 30px;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  }
+  
+  section {
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    margin-bottom: 10px;
+    border-left: 5px solid #3498db;
+    padding-left: 10px;
+  }
+  
+  /* GRID E CARDS */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+  }
+  
+  .card {
+    background: #f8f9fb;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e6ed;
+    text-align: center;
+    transition: 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  }
+  
+  /* BOTÕES */
+  .buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+  }
+  
+  button {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #2c3e50;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  
+  button:hover {
+    background: #1a252f;
+    transform: translateY(-2px);
+  }
+  
+  .secondary {
+    background: #3498db;
+  }
+  
+  .secondary:hover {
+    background: #217dbb;
+  }
+  
+  /* INPUTS */
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    transition: 0.2s;
+  }
+  
+  input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52,152,219,0.3);
+  }
+  
+  /* FORM */
+  .form-card {
+    background: #f8f9fb;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #e0e6ed;
+  }
+  
+  /* FOOTER */
+  footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
