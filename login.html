@@ -2,20 +2,88 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Login - SIE</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
 
-<main style="max-width:400px; margin:100px auto;">
-  <h2>Login</h2>
+<div class="login-container">
 
-  <input type="text" id="usuario" placeholder="Usuário">
-  <input type="password" id="senha" placeholder="Senha">
+  <!-- LADO ESQUERDO -->
+  <div class="login-left">
 
-  <button onclick="fazerLogin()" style="width:100%;">Entrar</button>
-</main>
+    <div class="overlay"></div>
+
+    <div class="content">
+
+      <h1>SIE</h1>
+
+      <p>
+        Sistema Integrado Escolar
+      </p>
+
+      <span>
+        Controle moderno para bibliotecas escolares
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- LADO DIREITO -->
+  <div class="login-right">
+
+    <form class="login-box">
+
+      <h2>Entrar</h2>
+
+      <p class="subtitle">
+        Faça login para acessar o sistema
+      </p>
+
+      <input
+        type="text"
+        id="usuario"
+        placeholder="Usuário"
+      >
+
+      <div class="senha-box">
+
+        <input
+          type="password"
+          id="senha"
+          placeholder="Senha"
+        >
+
+        <button
+          type="button"
+          class="mostrar"
+          onclick="mostrarSenha()"
+        >
+          👁
+        </button>
+
+      </div>
+
+      <button
+        type="button"
+        class="login-btn"
+        onclick="login()"
+      >
+        Entrar
+      </button>
+
+      <p id="erroLogin"></p>
+
+    </form>
+
+  </div>
+
+</div>
 
 <script src="login.js"></script>
 
