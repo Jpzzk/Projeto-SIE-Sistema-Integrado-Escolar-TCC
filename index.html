@@ -4,145 +4,218 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIE - Sistema Integrado Escolar</title>
+
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<header>
-  <h1>Sistema Integrado Escolar (SIE)</h1>
-  <p>Organização simples e eficiente para bibliotecas escolares</p>
-  <button onclick="logout()">Sair</button>
-</header>
+  <div class="layout">
+  
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+  
+      <div class="logo">
+        <h2>SIE</h2>
+        <p>Sistema Escolar</p>
+      </div>
+  
+      <nav>
 
-<main>
+        <a href="#" onclick="mostrarSecao('dashboard')">
+          Dashboard
+        </a>
+      
+        <a href="#" onclick="mostrarSecao('emprestimos')">
+          Empréstimos
+        </a>
+      
+        <a href="#" onclick="mostrarSecao('livros')">
+          Livros
+        </a>
+      
+        <a href="#" onclick="mostrarSecao('usuarios')">
+          Usuários
+        </a>
+      
+      
+      </nav>
 
-  <section>
-    <h2>Sobre o Projeto</h2>
-    <p>
-      O SIE foi criado para melhorar a organização da biblioteca escolar, facilitando o controle de empréstimos e devoluções de livros.
-      A ideia é substituir anotações manuais por um sistema mais simples, rápido e organizado.
-    </p>
-  </section>
+      <button class="logout" onclick="logout()">
+        Sair
+      </button>
+  
+    </aside>
+  
+    <!-- CONTEÚDO -->
+    <main class="content">
+  
+      <header class="top-content">
+  
+        <div>
+          <h1>Painel Principal</h1>
+          <p id="usuarioLogado"></p>
+        </div>
+  
+      </header>
+  
+      <!-- CARDS -->
+      <section
+  class="cards-container secao"
+  id="dashboard">
+  
+        <div class="dashboard-card">
+          <h3>Total Empréstimos</h3>
+          <p id="totalEmprestimos">0</p>
+        </div>
+  
+        <div class="dashboard-card">
+          <h3>Livros</h3>
+          <p>0</p>
+        </div>
+  
+        <div class="dashboard-card">
+          <h3>Atrasados</h3>
+          <p>0</p>
+        </div>
+  
+      </section>
+  
+      <!-- FORMULÁRIO -->
+      <section
+  class="form-container secao"
+  id="emprestimos">
+  
+        <h2>Registrar Empréstimo</h2>
+  
+        <input type="text" id="nome" placeholder="Nome do aluno">
+  
+        <input type="text" id="telefone" placeholder="Telefone">
+  
+        <select id="livro"></select>
+  
+        <label>Data de retirada</label>
+        <input type="date" id="retirada">
+  
+        <label>Data de devolução</label>
+        <input type="date" id="devolucao">
+  
+        <button onclick="salvarDados()">
+          Salvar Registro
+        </button>
+        <section class="form-container">
 
-  <section>
-    <h2>Autores</h2>
-    <div class="grid">
-      <div class="card">João Paulo</div>
-      <div class="card">Tiago Rodrigo</div>
-      <div class="card">David Thiago</div>
-    </div>
-  </section>
+          <section
+  class="form-container secao"
+  id="livros"
+>
 
-  <section>
-    <h2>Funcionalidades</h2>
-    <div class="grid">
-      <div class="card">Registro de empréstimos</div>
-      <div class="card">Controle de devolução</div>
-      <div class="card">Organização de usuários</div>
-      <div class="card">Avisos de devolução</div>
-    </div>
-  </section>
+  <h2>Cadastrar Livro</h2>
 
-  <section>
-    <h2>Resumo</h2>
-    <p>
-      O sistema registra informações como nome, telefone, data de retirada e devolução dos livros.
-      Também pretende enviar avisos para evitar atrasos e melhorar o controle da biblioteca.
-    </p>
-  </section>
+  <input
+    type="text"
+    id="nomeLivro"
+    placeholder="Nome do livro"
+  >
 
-  <section>
-    <h2>Objetivo</h2>
-    <p>
-      Criar um sistema digital que facilite o controle de empréstimos e devoluções, tornando tudo mais organizado e prático.
-    </p>
-  </section>
+  <input
+    type="text"
+    id="autorLivro"
+    placeholder="Autor do livro"
+  >
 
-  <section>
-    <h2>Ações do Sistema</h2>
-    <div class="buttons">
-      <button onclick="alert('Abrir formulário de empréstimo')">Registrar Empréstimo</button>
-      <button class="secondary" onclick="alert('Registrar devolução')">Registrar Devolução</button>
-      <button onclick="alert('Consultar dados')">Consultar Registros</button>
-    </div>
-  </section>
+  <input
+    type="text"
+    id="categoriaLivro"
+    placeholder="Categoria"
+  >
 
-  <section>
-    <h2>Simulação de Cadastro</h2>
-    <div class="card">
-      <p>Nome:</p>
-      <input type="text" placeholder="Digite o nome" style="width:100%; padding:10px; margin-bottom:10px;">
+  <button onclick="cadastrarLivro()">
+    Cadastrar Livro
+  </button>
 
-      <p>Telefone:</p>
-      <input type="text" placeholder="Digite o telefone" style="width:100%; padding:10px; margin-bottom:10px;">
+</section>
+        <section class="table-container">
+<!-- USUÁRIOS -->
 
-      <p>Data de retirada:</p>
-      <input type="date" style="width:100%; padding:10px; margin-bottom:10px;">
+<section
+  class="table-container secao"
+  id="usuarios"
+>
 
-      <p>Data de devolução:</p>
-      <input type="date" style="width:100%; padding:10px; margin-bottom:10px;">
+  <h2>Usuários</h2>
 
-      <button style="width:100%; margin-top:10px;">Salvar</button>
-    </div>
-  </section>
+  <p>
+    Área futura para gerenciamento de usuários.
+  </p>
 
-</main>
+</section>
 
-<footer>
-  <p>Projeto escolar SIE - 2026</p>
-</footer>
+<!-- RELATÓRIOS -->
 
-<script>
-// salvar dados no navegador
-function salvarDados() {
-  const nome = document.getElementById('nome').value;
-  const telefone = document.getElementById('telefone').value;
-  const retirada = document.getElementById('retirada').value;
-  const devolucao = document.getElementById('devolucao').value;
+<section
+  class="table-container secao"
+  id="relatorios"
+>
 
-  if (!nome || !telefone || !retirada || !devolucao) {
-    alert('Preencha todos os campos');
-    return;
-  }
+  <h2>Relatórios</h2>
 
-  const registro = { nome, telefone, retirada, devolucao };
+  <div class="dashboard-card">
 
-  let dados = JSON.parse(localStorage.getItem('emprestimos')) || [];
-  dados.push(registro);
+    <h3>Total de Empréstimos</h3>
+    <p id="relatorioEmprestimos">0</p>
 
-  localStorage.setItem('emprestimos', JSON.stringify(dados));
+  </div>
 
-  alert('Dados salvos com sucesso');
-  mostrarDados();
-}
+  <div class="dashboard-card">
 
-function mostrarDados() {
-  const lista = document.getElementById('lista');
-  lista.innerHTML = '';
+    <h3>Total de Livros</h3>
+    <p id="relatorioLivros">0</p>
 
-  let dados = JSON.parse(localStorage.getItem('emprestimos')) || [];
+  </div>
 
-  dados.forEach((item) => {
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.innerHTML = `
-      <strong>${item.nome}</strong><br>
-      Tel: ${item.telefone}<br>
-      Retirada: ${item.retirada}<br>
-      Devolução: ${item.devolucao}
-    `;
-    lista.appendChild(div);
-  });
-}
+</section>
+          <div class="table-top">
+        
+            <h2>Registros</h2>
+        
+            <input
+              type="text"
+              id="pesquisa"
+              placeholder="Pesquisar usuário ou livro..."
+              onkeyup="pesquisarRegistro()"
+            >
+        
+          </div>
+        
+          <div class="table-wrapper">
 
-// carregar dados ao abrir
-window.onload = mostrarDados;
-</script>
-<script>
-  if (localStorage.getItem('logado') !== 'true') {
-    window.location.href = 'login.html';
-  }
-</script>
-<script src="script.js"></script>
-</body>
+            <table>
+          
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Livro</th>
+                  <th>Retirada</th>
+                  <th>Devolução</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+          
+              <tbody id="lista"></tbody>
+          
+            </table>
+          
+          </div>
+        
+        </section>
+  
+    </main>
+  
+  </div>
+  
+  <script src="script.js"></script>
+  
+  </body>
 </html>
