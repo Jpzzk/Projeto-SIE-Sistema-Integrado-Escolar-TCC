@@ -4,218 +4,317 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SIE - Sistema Integrado Escolar</title>
-
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
   <div class="layout">
-  
-    <!-- SIDEBAR -->
+
+    <!-- MENU LATERAL -->
     <aside class="sidebar">
-  
-      <div class="logo">
-        <h2>SIE</h2>
-        <p>Sistema Escolar</p>
-      </div>
-  
-      <nav>
-
-        <a href="#" onclick="mostrarSecao('dashboard')">
-          Dashboard
-        </a>
-      
-        <a href="#" onclick="mostrarSecao('emprestimos')">
-          Empréstimos
-        </a>
-      
-        <a href="#" onclick="mostrarSecao('livros')">
-          Livros
-        </a>
-      
-        <a href="#" onclick="mostrarSecao('usuarios')">
-          Usuários
-        </a>
-      
-      
-      </nav>
-
-      <button class="logout" onclick="logout()">
-        Sair
-      </button>
-  
-    </aside>
-  
-    <!-- CONTEÚDO -->
-    <main class="content">
-  
-      <header class="top-content">
-  
-        <div>
-          <h1>Painel Principal</h1>
-          <p id="usuarioLogado"></p>
+      <div>
+        <div class="logo">
+          <h2>SIE</h2>
+          <p>Sistema Escolar</p>
         </div>
-  
+
+        <nav>
+          <a href="#" data-section="dashboard"
+             onclick="mostrarSecao('dashboard'); return false;">
+            <span>Dashboard</span>
+          </a>
+
+          <a href="#" data-section="emprestimos"
+             onclick="mostrarSecao('emprestimos'); return false;">
+            <span>Empréstimos</span>
+          </a>
+
+          <a href="#" data-section="livros"
+             onclick="mostrarSecao('livros'); return false;">
+            <span>Livros</span>
+          </a>
+
+          <a href="#" data-section="usuarios"
+             onclick="mostrarSecao('usuarios'); return false;">
+            <span>Usuários</span>
+          </a>
+        </nav>
+      </div>
+
+      <button class="logout" onclick="logout()">Sair</button>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+
+      <header class="top-content">
+        <h1>Painel Principal</h1>
+        <p id="usuarioLogado">Biblioteca Escolar</p>
       </header>
-  
-      <!-- CARDS -->
-      <section
-  class="cards-container secao"
-  id="dashboard">
-  
+
+      <!-- DASHBOARD -->
+      <section class="cards-container secao" id="dashboard">
+
         <div class="dashboard-card">
-          <h3>Total Empréstimos</h3>
+          <h3>Total de empréstimos</h3>
           <p id="totalEmprestimos">0</p>
         </div>
-  
+
         <div class="dashboard-card">
-          <h3>Livros</h3>
-          <p>0</p>
+          <h3>Empréstimos ativos</h3>
+          <p id="emprestimosAtivos">0</p>
         </div>
-  
+
         <div class="dashboard-card">
-          <h3>Atrasados</h3>
-          <p>0</p>
+          <h3>Livros no acervo</h3>
+          <p id="totalLivros">0</p>
         </div>
-  
+
+        <div class="dashboard-card">
+          <h3>Livros disponíveis</h3>
+          <p id="livrosDisponiveis">0</p>
+        </div>
+
+        <div class="dashboard-card">
+          <h3>Empréstimos atrasados</h3>
+          <p id="totalAtrasados">0</p>
+        </div>
+
       </section>
-  
-      <!-- FORMULÁRIO -->
-      <section
-  class="form-container secao"
-  id="emprestimos">
-  
-        <h2>Registrar Empréstimo</h2>
-  
-        <input type="text" id="nome" placeholder="Nome do aluno">
-  
-        <input type="text" id="telefone" placeholder="Telefone">
-  
-        <select id="livro"></select>
-  
-        <label>Data de retirada</label>
-        <input type="date" id="retirada">
-  
-        <label>Data de devolução</label>
-        <input type="date" id="devolucao">
-  
-        <button onclick="salvarDados()">
-          Salvar Registro
-        </button>
-        <section class="form-container">
 
-          <section
-  class="form-container secao"
-  id="livros"
->
+      <!-- EMPRÉSTIMOS -->
+      <section class="secao" id="emprestimos">
 
-  <h2>Cadastrar Livro</h2>
+        <div class="form-container">
+          <h2>Registrar empréstimo</h2>
 
-  <input
-    type="text"
-    id="nomeLivro"
-    placeholder="Nome do livro"
-  >
+          <label for="usuarioEmprestimo">Selecionar usuário cadastrado</label>
+          <select id="usuarioEmprestimo">
+            <option value="">Ou preencha os dados manualmente</option>
+          </select>
 
-  <input
-    type="text"
-    id="autorLivro"
-    placeholder="Autor do livro"
-  >
+          <label for="nome">Nome do aluno</label>
+          <input id="nome" type="text" placeholder="Nome do aluno">
 
-  <input
-    type="text"
-    id="categoriaLivro"
-    placeholder="Categoria"
-  >
+          <label for="telefone">Telefone</label>
+          <input id="telefone" type="tel" placeholder="Telefone">
 
-  <button onclick="cadastrarLivro()">
-    Cadastrar Livro
-  </button>
+          <label for="livro">Livro disponível</label>
+          <select id="livro">
+            <option value="">Selecione um livro</option>
+          </select>
 
-</section>
-        <section class="table-container">
-<!-- USUÁRIOS -->
+          <label for="retirada">Data de retirada</label>
+          <input id="retirada" type="date">
 
-<section
-  class="table-container secao"
-  id="usuarios"
->
+          <label for="devolucao">Data prevista para devolução</label>
+          <input id="devolucao" type="date">
 
-  <h2>Usuários</h2>
+          <button type="button" onclick="salvarDados()">
+            Registrar empréstimo
+          </button>
+        </div>
 
-  <p>
-    Área futura para gerenciamento de usuários.
-  </p>
-
-</section>
-
-<!-- RELATÓRIOS -->
-
-<section
-  class="table-container secao"
-  id="relatorios"
->
-
-  <h2>Relatórios</h2>
-
-  <div class="dashboard-card">
-
-    <h3>Total de Empréstimos</h3>
-    <p id="relatorioEmprestimos">0</p>
-
-  </div>
-
-  <div class="dashboard-card">
-
-    <h3>Total de Livros</h3>
-    <p id="relatorioLivros">0</p>
-
-  </div>
-
-</section>
+        <div class="table-container">
           <div class="table-top">
-        
-            <h2>Registros</h2>
-        
-            <input
-              type="text"
-              id="pesquisa"
-              placeholder="Pesquisar usuário ou livro..."
-              onkeyup="pesquisarRegistro()"
-            >
-        
+            <h2>Registros de empréstimos</h2>
+            <input id="pesquisa" type="search"
+                   placeholder="Pesquisar aluno ou livro..."
+                   oninput="pesquisarRegistro()">
           </div>
-        
-          <div class="table-wrapper">
 
+          <div class="table-wrapper">
             <table>
-          
               <thead>
                 <tr>
-                  <th>Nome</th>
+                  <th>Aluno</th>
                   <th>Telefone</th>
                   <th>Livro</th>
                   <th>Retirada</th>
                   <th>Devolução</th>
+                  <th>Status</th>
                   <th>Ações</th>
                 </tr>
               </thead>
-          
               <tbody id="lista"></tbody>
-          
             </table>
-          
           </div>
-        
-        </section>
-  
+        </div>
+
+      </section>
+
+      <!-- LIVROS E GOOGLE BOOKS -->
+      <section class="secao" id="livros">
+
+        <div class="form-container book-search-panel">
+          <div class="livros-titulo">
+            <h2>Pesquisar livros</h2>
+            <p>Encontre livros pelo título, autor ou ISBN.</p>
+          </div>
+
+          <form id="formBuscaLivros">
+            <input
+              id="buscaLivro"
+              type="search"
+              placeholder="Ex.: Dom Casmurro ou Machado de Assis"
+              required
+            >
+
+            <button type="submit" id="btnBuscar">
+              Buscar livros
+            </button>
+          </form>
+
+          <p id="mensagemBusca" role="status" aria-live="polite"></p>
+
+          <div id="resultadosLivros" class="livros-grid"></div>
+
+          <div class="load-more-container">
+            <button type="button" id="btnCarregarMais" hidden>
+              Carregar mais livros
+            </button>
+          </div>
+        </div>
+
+        <!-- ACERVO -->
+        <div class="table-container">
+          <div class="acervo-header">
+            <div>
+              <h2>Meu acervo</h2>
+              <p>Gerencie os livros cadastrados na biblioteca.</p>
+            </div>
+
+            <div class="acervo-filtros">
+              <input
+                type="search"
+                id="pesquisarAcervo"
+                placeholder="Pesquisar no acervo..."
+              >
+
+              <select id="filtroDisponibilidade">
+                <option value="todos">Todos os livros</option>
+                <option value="disponivel">Disponíveis</option>
+                <option value="emprestado">Emprestados</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="acervoLivros" class="livros-grid"></div>
+        </div>
+
+        <!-- CADASTRO MANUAL -->
+        <div class="form-container">
+          <h2>Cadastrar livro manualmente</h2>
+
+          <label for="nomeLivro">Título</label>
+          <input id="nomeLivro" type="text" placeholder="Nome do livro">
+
+          <label for="autorLivro">Autor</label>
+          <input id="autorLivro" type="text" placeholder="Autor">
+
+          <label for="categoriaLivro">Categoria</label>
+          <input id="categoriaLivro" type="text" placeholder="Categoria">
+
+          <button type="button" onclick="cadastrarLivro()">
+            Cadastrar livro
+          </button>
+        </div>
+
+      </section>
+
+      <!-- GERENCIAMENTO DE USUÁRIOS -->
+      <section class="secao" id="usuarios">
+
+        <div class="form-container">
+          <h2 id="tituloFormularioUsuario">Cadastrar usuário</h2>
+
+          <form id="formUsuario">
+
+            <label for="nomeUsuario">Nome completo</label>
+            <input
+              type="text"
+              id="nomeUsuario"
+              placeholder="Nome completo"
+              required
+            >
+
+            <label for="telefoneUsuario">Telefone</label>
+            <input
+              type="tel"
+              id="telefoneUsuario"
+              placeholder="Telefone"
+              required
+            >
+
+            <label for="tipoUsuario">Tipo de usuário</label>
+            <select id="tipoUsuario" required>
+              <option value="">Selecione o tipo</option>
+              <option value="Aluno">Aluno</option>
+              <option value="Professor">Professor</option>
+              <option value="Funcionário">Funcionário</option>
+            </select>
+
+            <label for="turmaUsuario">Turma ou setor</label>
+            <input
+              type="text"
+              id="turmaUsuario"
+              placeholder="Ex.: 3º ano ou Secretaria"
+            >
+
+            <button type="submit" id="btnSalvarUsuario">
+              Cadastrar usuário
+            </button>
+
+            <button
+              type="button"
+              id="btnCancelarEdicao"
+              onclick="cancelarEdicaoUsuario()"
+              hidden
+            >
+              Cancelar edição
+            </button>
+
+          </form>
+        </div>
+
+        <!-- LISTA DE USUÁRIOS -->
+        <div class="table-container">
+
+          <div class="table-top">
+            <h2>Usuários cadastrados</h2>
+
+            <input
+              type="search"
+              id="pesquisaUsuarios"
+              placeholder="Pesquisar usuário..."
+            >
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                  <th>Tipo</th>
+                  <th>Turma/Setor</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+
+              <tbody id="listaUsuarios"></tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </section>
+
     </main>
-  
   </div>
-  
+
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
-  
-  </body>
+
+</body>
 </html>
